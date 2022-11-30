@@ -6,6 +6,7 @@ from GetOilPrice_operators import OilPrice
 from GetBitcoinPrice_operators import BitcoinPrice
 from GetEuroExchangeRate_operators import EuroExchange
 from GetUSInterestRate_operators import USInterestRate
+from InsertToDatabase_operators import InsertToDatabase
 
 
 dag = DAG('get_gold_price', description='ambil gold price dari API',
@@ -42,6 +43,9 @@ get_USinterestrate = USInterestRate(access_key = '9q6ctgp5t2h2n52n821ah17ey52kxj
                         tanggal = '2011-11-29',
                         symbol = 'EUR',
                         task_id='get_US_interest_rate', 
-                        dag=dag)                       
+                        dag=dag)  
 
-dummy_task >> get_goldprice >> get_oilprice >> get_bitcoinprice >> get_euroexchangerate >> get_USinterestrate
+insert_todatabase = InsertToDatabase(task_id='insert_to_database', 
+                        dag=dag)
+
+dummy_task >> get_goldprice >> get_oilprice >> get_bitcoinprice >> get_euroexchangerate >> get_USinterestrate >> insert_todatabase
