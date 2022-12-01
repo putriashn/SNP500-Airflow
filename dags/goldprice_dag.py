@@ -15,33 +15,30 @@ dag = DAG('get_gold_price', description='ambil gold price dari API',
 dummy_task = DummyOperator(task_id='dummy_task', dag=dag)
 
 get_goldprice = GoldPrice(access_key = '9q6ctgp5t2h2n52n821ah17ey52kxju76wupxdxmprp1al0yy4oi1vb1bf4x',
-                        tanggal = '2011-11-29',
+                        tanggal = date.today().strftime("%Y-%m-%d"),
                         symbol = 'XAU',
                         task_id='get_gold_price_task', 
                         dag=dag)
 
 get_oilprice = OilPrice(access_key = '9q6ctgp5t2h2n52n821ah17ey52kxju76wupxdxmprp1al0yy4oi1vb1bf4x',
-                        tanggal = '2011-11-29',
+                        tanggal = date.today().strftime("%Y-%m-%d"),
                         symbol = 'WTIOIL',
                         task_id='get_oil_price_task', 
                         dag=dag)
 
 get_bitcoinprice = BitcoinPrice(access_key = '9q6ctgp5t2h2n52n821ah17ey52kxju76wupxdxmprp1al0yy4oi1vb1bf4x',
-                        tanggal = '2011-11-29',
+                        tanggal = date.today().strftime("%Y-%m-%d"),
                         symbol = 'BTC',
                         task_id='get_bitcoin_price_task', 
                         dag=dag)
 
 get_euroexchangerate = EuroExchange(access_key = '9q6ctgp5t2h2n52n821ah17ey52kxju76wupxdxmprp1al0yy4oi1vb1bf4x',
-                        tanggal = '2011-11-29',
                         symbol = 'EUR',
                         task_id='get_euro_exchange_rate', 
                         dag=dag) 
 
-get_USinterestrate = USInterestRate(access_key = '9q6ctgp5t2h2n52n821ah17ey52kxju76wupxdxmprp1al0yy4oi1vb1bf4x',
-                        tanggal = '2011-11-29',
-                        symbol = 'EUR',
+get_USinterestrate = USInterestRate(tanggal = '2022-10-1',
                         task_id='get_US_interest_rate', 
-                        dag=dag)                       
+                        dag=dag)  
 
 dummy_task >> get_goldprice >> get_oilprice >> get_bitcoinprice >> get_euroexchangerate >> get_USinterestrate
