@@ -11,7 +11,7 @@ from GetEuroExchangeRate_operators import get_euroexchangerate
 from GetUSInterestRate_operators import get_USinterestrate
 from InsertData_operators import insert_todatabase
 
-dag = DAG('get_gold_price', description='ambil gold price dari API',
+dag = DAG('all_data', description='ambil seluruh data dari API',
           schedule_interval=None,
           start_date=datetime(2022, 11, 30), catchup=False)
 
