@@ -40,7 +40,7 @@ def insert_todatabase(ti):
     cursor.execute("""
                     INSERT INTO sumberdata
                     VALUES ({},{},{},{},{},{},{},{},{},{},{})
-                    """.format("2022-12-01", 4015, 4014, gold_high, gold_low, oil_high, oil_low, bitcoin_high, bitcoin_low, euro_exchange, interest))
+                    """.format(harini, 4015, 4014, gold_high, gold_low, oil_high, oil_low, bitcoin_high, bitcoin_low, euro_exchange, interest))
     dbconnect.commit()       
         
     log.info("Inserted to database")
